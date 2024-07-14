@@ -4,7 +4,7 @@ import { MongoClient } from "mongodb";
 import cron from "node-cron";
 
 const getStocks = async () => {
-  const client = new MongoClient(process.env.MOGO_URI);
+  const client = new MongoClient(process.env.MOGO_URI as string);
 
   await client.connect();
 
@@ -14,7 +14,7 @@ const getStocks = async () => {
   const response = await fetch(API_ENDPOINT, {
     method: "POST",
     headers: {
-      "x-api-key": process.env.COINS_API_KEY,
+      "x-api-key": process.env.COINS_API_KEY || "",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
