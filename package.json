@@ -2,8 +2,9 @@
   "name": "fomo",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -15,7 +16,9 @@
     "node-cron": "^3.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-redux": "^9.1.2"
+    "react-redux": "^9.1.2",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "@types/node": "^20",

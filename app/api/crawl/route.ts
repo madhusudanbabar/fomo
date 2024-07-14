@@ -1,13 +1,9 @@
 import { NextResponse } from "next/server";
 import { API_ENDPOINT } from "./constants";
-import { MongoClient } from "mongodb";
 import cron from "node-cron";
+import client from "../commons";
 
 const getStocks = async () => {
-  const client = new MongoClient(process.env.MOGO_URI as string);
-
-  await client.connect();
-
   const db = client.db("fomo");
   const collection = db.collection("crypto");
 
