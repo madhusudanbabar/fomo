@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { addStock } from "./stocksSlice";
+import { stocksReducer } from "./stocksSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
-    stocks: addStock,
+    stocks: stocksReducer,
   },
   middleware: (defaultMW) => defaultMW({ serializableCheck: false }),
 });
