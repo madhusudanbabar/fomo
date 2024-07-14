@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { API_ENDPOINT } from "./constants";
-import cron from "node-cron";
 import client from "../commons";
 
 const getStocks = async () => {
@@ -32,11 +31,6 @@ const getStocks = async () => {
 
   return data;
 };
-
-cron.schedule("0 * * * *", () => {
-  console.log("Running hourly task");
-  getStocks();
-});
 
 export async function GET() {
   try {

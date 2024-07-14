@@ -22,6 +22,13 @@ const getRecentData = async (collection) => {
   return recentData;
 };
 
+setInterval(() => {
+  console.log("Running every 5 seconds");
+  fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/api/crawl`
+  );
+}, 5000);
+
 app.prepare().then(async () => {
   const httpServer = createServer(handler);
   const io = new Server(httpServer);
@@ -33,8 +40,9 @@ app.prepare().then(async () => {
   const stream = client.watch();
 
   io.on("connection", (socket) => {
-    socket.on("stock", (val) => {
+    socket.on("stock", async (val) => {
       stock = val;
+      socket.emit("stock-updated", await getRecentData(collection));
     });
 
     stream.on("change", async () => {
